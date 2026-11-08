@@ -192,7 +192,7 @@ module TagsHelper
 
   def blurb_tag_block(item, tag_groups=nil)
     tag_groups ||= item.tag_groups
-    categories = ['ArchiveWarning', 'Relationship', 'Character', 'Freeform']
+    categories = ['ArchiveWarning', 'Relationship', 'Character', 'AlphaCharacter', 'BetaCharacter', 'OmegaCharacter', 'Freeform']
     tag_block = +""
 
     categories.each do |category|

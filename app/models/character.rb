@@ -7,7 +7,7 @@ class Character < Tag
     ['Fandom', 'MetaTag']
   end
   def child_types
-    ['Relationship', 'SubTag', 'Merger']
+    ['Relationship', 'SubTag', 'Merger', 'AlphaCharacter', 'BetaCharacter', 'OmegaCharacter']
   end
 
   def characters

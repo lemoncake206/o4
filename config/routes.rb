@@ -750,9 +750,15 @@ Rails.application.routes.draw do
     tag
     fandom
     character
+    alpha_character
+    beta_character
+    omega_character
     relationship
     freeform
     character_in_fandom
+    alpha_character_in_fandom
+    beta_character_in_fandom
+    omega_character_in_fandom
     relationship_in_fandom
     tags_in_sets
     associated_tags

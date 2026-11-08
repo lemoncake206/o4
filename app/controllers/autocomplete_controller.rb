@@ -36,6 +36,9 @@ class AutocompleteController < ApplicationController
   def tag; tag_output(params[:term], params[:type] || "all"); end
   def fandom; tag_output(params[:term], "fandom"); end
   def character; tag_output(params[:term], "character"); end
+  def alpha_character; tag_output(params[:term], "alphacharacter"); end
+  def beta_character; tag_output(params[:term], "betacharacter"); end
+  def omega_character; tag_output(params[:term], "omegacharacter"); end
   def relationship; tag_output(params[:term], "relationship"); end
   def freeform; tag_output(params[:term], "freeform"); end
 
@@ -47,6 +50,9 @@ class AutocompleteController < ApplicationController
     end
   public
   def character_in_fandom; tag_in_fandom_output(params.merge({tag_type: "character"})); end
+  def alpha_character_in_fandom; tag_in_fandom_output(params.merge({tag_type: "alphacharacter"})); end
+  def beta_character_in_fandom; tag_in_fandom_output(params.merge({tag_type: "betacharacter"})); end
+  def omega_character_in_fandom; tag_in_fandom_output(params.merge({tag_type: "omegacharacter"})); end
   def relationship_in_fandom; tag_in_fandom_output(params.merge({tag_type: "relationship"})); end
 
 

@@ -912,6 +912,7 @@ class WorksController < ApplicationController
   def work_params
     params.require(:work).permit(
       :rating_string, :fandom_string, :relationship_string, :character_string,
+      :alpha_character_string, :beta_character_string, :omega_character_string,
       :archive_warning_string, :category_string,
       :freeform_string, :summary, :notes, :endnotes, :collection_names, :recipients, :wip_length,
       :backdate, :language_id, :work_skin_id, :restricted, :comment_permissions,
@@ -938,6 +939,7 @@ class WorksController < ApplicationController
   def work_tag_params
     params.require(:work).permit(
       :rating_string, :fandom_string, :relationship_string, :character_string,
+      :alpha_character_string, :beta_character_string, :omega_character_string,
       :archive_warning_string, :category_string, :freeform_string, :language_id,
       category_strings: [],
       secondary_category_strings: [],
@@ -958,6 +960,9 @@ class WorksController < ApplicationController
       :fandom_names,
       :rating_ids,
       :character_names,
+      :alpha_character_names,
+      :beta_character_names,
+      :omega_character_names,
       :relationship_names,
       :freeform_names,
       :hits,
@@ -977,6 +982,9 @@ class WorksController < ApplicationController
       archive_warning_ids: [],
       warning_ids: [], # backwards compatibility
       category_ids: [],
+      alpha_character_ids: [],
+      beta_character_ids: [],
+      omega_character_ids: [],
       secondary_category_ids: [],
       rating_ids: [],
       fandom_ids: [],

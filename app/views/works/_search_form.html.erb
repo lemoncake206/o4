@@ -156,6 +156,24 @@
         <%= f.text_field :character_names, autocomplete_options("character") %>
       </dd>
       <dt>
+        <%= f.label :alpha_character_names, ts("Alpha Characters") %>
+      </dt>
+      <dd>
+        <%= f.text_field :alpha_character_names, autocomplete_options("alpha_character") %>
+      </dd>
+      <dt>
+        <%= f.label :beta_character_names, ts("Beta Characters") %>
+      </dt>
+      <dd>
+        <%= f.text_field :beta_character_names, autocomplete_options("beta_character") %>
+      </dd>
+      <dt>
+        <%= f.label :omega_character_names, ts("Omega Characters") %>
+      </dt>
+      <dd>
+        <%= f.text_field :omega_character_names, autocomplete_options("omega_character") %>
+      </dd>
+      <dt>
         <%= f.label :relationship_names, ts("Relationships") %>
       </dt>
       <dd>

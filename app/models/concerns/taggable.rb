@@ -61,6 +61,9 @@ module Taggable
     result["ArchiveWarning"] ||= []
     result["Relationship"] ||= []
     result["Character"] ||= []
+    result["AlphaCharacter"] ||= []
+    result["BetaCharacter"] ||= []
+    result["OmegaCharacter"] ||= []
     result["Freeform"] ||= []
 
     result

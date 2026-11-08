@@ -10,7 +10,7 @@ class Tag < ApplicationRecord
   # Note: the order of this array is important.
   # It is the order that tags are shown in the header of a work
   # (banned tags are not shown)
-  TYPES = ['Rating', 'ArchiveWarning', 'Category', 'SecondaryCategory', 'Media', 'Fandom', 'Relationship', 'Character', 'Freeform', 'Banned' ]
+  TYPES = ['Rating', 'ArchiveWarning', 'Category', 'SecondaryCategory', 'Media', 'Fandom', 'Relationship', 'Character', 'AlphaCharacter', 'BetaCharacter', 'OmegaCharacter', 'Freeform', 'Banned' ]
 
   # these tags can be filtered on
   FILTERS = TYPES - ['Banned', 'Media']
@@ -20,7 +20,7 @@ class Tag < ApplicationRecord
 
   # these are tags which have been created by users
   # the order is important, and it is the order in which they appear in the tag wrangling interface
-  USER_DEFINED = ['Fandom', 'Character', 'Relationship', 'Freeform']
+  USER_DEFINED = ['Fandom', 'Character', 'AlphaCharacter', 'BetaCharacter', 'OmegaCharacter', 'Relationship', 'Freeform']
 
   def self.label_name
     to_s.pluralize
@@ -530,11 +530,19 @@ class Tag < ApplicationRecord
   end
 
   def eligible_for_fandom_autocomplete?
-    (self.is_a?(Character) || self.is_a?(Relationship)) && canonical
+    (self.is_a?(Character) ||
+    self.is_a?(AlphaCharacter) ||
+    self.is_a?(BetaCharacter) ||
+    self.is_a?(OmegaCharacter) ||
+    self.is_a?(Relationship)) && canonical
   end
 
   def was_eligible_for_fandom_autocomplete?
-    (self.is_a?(Character) || self.is_a?(Relationship)) && (canonical || canonical_before_last_save)
+    (self.is_a?(Character) ||
+    self.is_a?(AlphaCharacter) ||
+    self.is_a?(BetaCharacter) ||
+    self.is_a?(OmegaCharacter) ||
+    self.is_a?(Relationship)) && (canonical || canonical_before_last_save)
   end
 
   def remove_stale_from_autocomplete
@@ -1003,10 +1011,10 @@ class Tag < ApplicationRecord
   end
 
   # defines fandom_string=, media_string=, character_string=, relationship_string=, freeform_string=
-  %w(Fandom Media Character Relationship Freeform).each do |tag_type|
-    attr_reader "#{tag_type.downcase}_string"
+  %w(Fandom Media Character AlphaCharacter BetaCharacter OmegaCharacter Relationship Freeform).each do |tag_type|
+    attr_reader "#{tag_type.underscore}_string"
 
-    define_method("#{tag_type.downcase}_string=") do |tag_string|
+    define_method("#{tag_type.underscore}_string=") do |tag_string|
       add_association_string(tag_type, tag_string)
     end
   end

@@ -127,6 +127,43 @@
                           data: { autocomplete_live_params: "fandom=work_fandom" }) %>
     </dd>
 
+    <dt class="alpha_character" title="<%= ts('alpha characters') %>">
+      <label for="work_alpha_character"><%= AlphaCharacter::NAME.pluralize %></label>
+      <%= link_to_help_modal(help_tags_characters_path, t(".characters_help_title")) %>
+    </dt>
+    <dd class="alpha_character" title="<%= ts('alpha characters') %>">
+      <%= text_field_tag "work[alpha_character_string]", include_blank ? "" : @work.alpha_character_string, 
+                        autocomplete_options('alpha_character_in_fandom', 
+                          id: "work_alpha_character",
+                          title: ts('alpha_characters'),
+                          data: { autocomplete_live_params: "fandom=work_fandom" }) %>
+    </dd>
+
+    <dt class="beta_character" title="<%= ts('beta characters') %>">
+      <label for="work_beta_character"><%= BetaCharacter::NAME.pluralize %></label>
+      <%= link_to_help_modal(help_tags_characters_path, t(".characters_help_title")) %>
+    </dt>
+    <dd class="beta_character" title="<%= ts('beta characters') %>">
+      <%= text_field_tag "work[beta_character_string]", include_blank ? "" : @work.beta_character_string, 
+                        autocomplete_options('beta_character_in_fandom', 
+                          id: "work_beta_character",
+                          title: ts('beta_characters'),
+                          data: { autocomplete_live_params: "fandom=work_fandom" }) %>
+    </dd>
+
+    <dt class="omega_character" title="<%= ts('omega characters') %>">
+      <label for="work_omega_character"><%= OmegaCharacter::NAME.pluralize %></label>
+      <%= link_to_help_modal(help_tags_characters_path, t(".characters_help_title")) %>
+    </dt>
+    <dd class="omega_character" title="<%= ts('omega characters') %>">
+      <%= text_field_tag "work[omega_character_string]", include_blank ? "" : @work.omega_character_string, 
+                        autocomplete_options('omega_character_in_fandom', 
+                          id: "work_omega_character",
+                          title: ts('omega_characters'),
+                          data: { autocomplete_live_params: "fandom=work_fandom" }) %>
+    </dd>
+
+
     <dt class="freeform" title="<%= ts('additional tags') %>">
       <label for="work_freeform"><%= Freeform::NAME %></label>
       <%= link_to_help_modal(help_tags_additional_path, t(".additional_tags_help_title")) %>

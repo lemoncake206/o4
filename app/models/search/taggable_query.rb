@@ -4,7 +4,7 @@ module TaggableQuery
   def filter_ids
     return @filter_ids if @filter_ids.present?
     @filter_ids = options[:filter_ids] || []
-    %w(fandom rating archive_warning category secondary_category character relationship freeform).each do |tag_type|
+    %w(fandom rating archive_warning category secondary_category character alpha_character beta_character omega_character relationship freeform).each do |tag_type|
       if options["#{tag_type}_ids".to_sym].present?
         ids = options["#{tag_type}_ids".to_sym]
         @filter_ids += ids.is_a?(Array) ? ids : [ids]
@@ -33,7 +33,7 @@ module TaggableQuery
   # Returns parse_named_tags of all of the fields used to include tag names.
   def parsed_included_tags
     @parsed_included_tags ||= parse_named_tags(
-      %i[fandom_names character_names relationship_names freeform_names
+      %i[fandom_names character_names alpha_character_names beta_character_names omega_character_names relationship_names freeform_names
          other_tag_names]
     )
   end
@@ -57,19 +57,39 @@ module TaggableQuery
   #     missing: ["missing tag name", "other missing"]
   #   }
   def parse_named_tags(fields)
-    names = all_tag_names(fields)
-    found = if names.present?
-              Tag.where(name: names).pluck(:id, :name)
-            else
-              []
-            end
-
+    ids = []
+    missing = []
+  
+    fields.each do |field|
+      names = all_tag_names([field])
+      next if names.blank?
+  
+      scope = case field
+              when :character_names
+                Tag.where(type: %w[
+                  Character AlphaCharacter BetaCharacter OmegaCharacter
+                ])
+              when :alpha_character_names
+                Tag.where(type: "AlphaCharacter")
+              when :beta_character_names
+                Tag.where(type: "BetaCharacter")
+              when :omega_character_names
+                Tag.where(type: "OmegaCharacter")
+              else
+                Tag.all
+              end
+  
+      found = scope.where(name: names).pluck(:id, :name)
+  
+      ids.concat(found.map(&:first))
+      missing.concat(names - found.map(&:second))
+    end
+  
     {
-      ids: found.map(&:first),
-      missing: (names - found.map(&:second)).uniq
+      ids: ids.uniq,
+      missing: missing.uniq
     }
   end
-
   # Parse the options for each of the passed-in fields, treating each one as a
   # comma-separated list of tags. Returns the list of all tags, with blank and
   # duplicate tags removed.
