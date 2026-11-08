@@ -303,7 +303,7 @@ class WorkQuery < Query
     end
 
     if facet_tags?
-      %w(rating archive_warning category fandom character relationship freeform).each do |facet_type|
+      %w(rating archive_warning category secondary_category fandom character relationship freeform).each do |facet_type|
         aggs[facet_type] = { terms: { field: "#{facet_type}_ids" } }
       end
     end

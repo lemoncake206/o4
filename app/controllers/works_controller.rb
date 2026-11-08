@@ -897,6 +897,7 @@ class WorksController < ApplicationController
       rating: params[:work][:rating_string],
       relationship: params[:work][:relationship_string],
       category: params[:work][:category_strings],
+      secondary_category: params[:work][:secondary_category_strings],
       freeform: params[:work][:freeform_string],
       notes: params[:notes],
       encoding: params[:encoding],
@@ -920,6 +921,7 @@ class WorksController < ApplicationController
       challenge_assignment_ids: [],
       challenge_claim_ids: [],
       category_strings: [],
+      secondary_category_strings: [],
       archive_warning_strings: [],
       author_attributes: [:byline, ids: [], coauthors: []],
       series_attributes: [:id, :title],
@@ -938,6 +940,7 @@ class WorksController < ApplicationController
       :rating_string, :fandom_string, :relationship_string, :character_string,
       :archive_warning_string, :category_string, :freeform_string, :language_id,
       category_strings: [],
+      secondary_category_strings: [],
       archive_warning_strings: []
     )
   end
@@ -974,6 +977,7 @@ class WorksController < ApplicationController
       archive_warning_ids: [],
       warning_ids: [], # backwards compatibility
       category_ids: [],
+      secondary_category_ids: [],
       rating_ids: [],
       fandom_ids: [],
       character_ids: [],

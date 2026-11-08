@@ -137,6 +137,19 @@
         </ul>
       </dd>
       <dt>
+        <%= ts("Secondary Categories") %>
+      </dt>
+      <dd>
+        <ul>
+          <% for tag in SecondaryCategory.canonical.by_name.sort %>
+            <li>
+              <%= check_box_tag "work_search[secondary_category_ids][]", tag.id, @search.secondary_category_ids.present? && @search.secondary_category_ids.include?(tag.id.to_s), :id => "secondary_category_#{tag.id}" %>
+              <%= label_tag "secondary_category_#{tag.id}", tag.name %>
+            </li>
+          <% end %>
+        </ul>
+      </dd>
+      <dt>
         <%= f.label :character_names, ts("Characters") %>
       </dt>
       <dd>

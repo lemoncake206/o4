@@ -82,6 +82,27 @@
       </fieldset>
     </dd>
 
+    <dt class="secondary_category">
+      <label><%= SecondaryCategory::NAME.pluralize %></label>
+    </dt>
+    <dd class="secondary_category">
+      <fieldset>
+        <!--<legend class="landmark">Category</legend>-->
+        <ul>
+          <%= collection_check_boxes(
+            :work, :secondary_category_strings,
+            SecondaryCategory.canonical.by_name.sort,
+            :name, :name
+          ) do |builder| %>
+            <li>
+              <%= builder.check_box %>
+              <%= builder.label %>
+            </li>
+          <% end %>
+        </ul>
+      </fieldset>
+    </dd>
+
     <dt class="relationship" title="<%= ts('relationships') %>">
       <label for="work_relationship"><%= Relationship::NAME.pluralize %></label>
       <%= link_to_help_modal(help_tags_relationships_path, t(".relationships_help_title")) %>

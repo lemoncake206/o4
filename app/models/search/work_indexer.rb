@@ -99,6 +99,7 @@ class WorkIndexer < Indexer
       rating_ids: object.general_rating_ids,
       archive_warning_ids: object.general_archive_warning_ids,
       category_ids: object.general_category_ids,
+      secondary_category_ids: object.general_secondary_category_ids,
       fandom_ids: object.general_fandom_ids,
       character_ids: object.general_character_ids,
       relationship_ids: object.general_relationship_ids,
