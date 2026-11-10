@@ -181,6 +181,80 @@ li.blurb:after, .blurb .blurb:after {
   background: url("/images/imageset.png") -125px 0px;
 }
 
+/* M/M + designation combinations */
+.required-tags .category-slash-alpha-alpha {
+  background: url("/images/skins/iconsets/default/category-slash-alpha-alpha.png");
+}
+
+.required-tags .category-slash-alpha-beta {
+  background: url("/images/skins/iconsets/default/category-slash-alpha-beta.png");
+}
+
+.required-tags .category-slash-alpha-omega {
+  background: url("/images/skins/iconsets/default/category-slash-alpha-omega.png");
+}
+
+.required-tags .category-slash-beta-beta {
+  background: url("/images/skins/iconsets/default/category-slash-beta-beta.png");
+}
+
+.required-tags .category-slash-beta-omega {
+  background: url("/images/skins/iconsets/default/category-slash-beta-omega.png");
+}
+
+/* F/M + designation combinations */
+.required-tags .category-het-alpha-alpha {
+  background: url("/images/skins/iconsets/default/category-het-alpha-alpha.png");
+}
+
+.required-tags .category-het-alpha-beta {
+  background: url("/images/skins/iconsets/default/category-het-alpha-beta.png");
+}
+
+.required-tags .category-het-alpha-omega {
+  background: url("/images/skins/iconsets/default/category-het-alpha-omega.png");
+}
+
+.required-tags .category-het-beta-beta {
+  background: url("/images/skins/iconsets/default/category-het-beta-beta.png");
+}
+
+.required-tags .category-het-beta-omega {
+  background: url("/images/skins/iconsets/default/category-het-beta-omega.png");
+}
+
+/* F/F + designation combinations */
+.required-tags .category-femslash-alpha-alpha {
+  background: url("/images/skins/iconsets/default/category-femslash-alpha-alpha.png");
+}
+
+.required-tags .category-femslash-alpha-beta {
+  background: url("/images/skins/iconsets/default/category-femslash-alpha-beta.png");
+}
+
+.required-tags .category-femslash-alpha-omega {
+  background: url("/images/skins/iconsets/default/category-femslash-alpha-omega.png");
+}
+
+.required-tags .category-femslash-beta-beta {
+  background: url("/images/skins/iconsets/default/category-femslash-beta-beta.png");
+}
+
+.required-tags .category-femslash-beta-omega {
+  background: url("/images/skins/iconsets/default/category-femslash-beta-omega.png");
+}
+
+.required-tags .category-slash-omega-omega {
+  background: url("/images/skins/iconsets/default/category-slash-omega-omega.png");
+}
+
+.required-tags .category-het-omega-omega {
+  background: url("/images/skins/iconsets/default/category-het-omega-omega.png");
+}
+
+.required-tags .category-femslash-omega-omega {
+  background: url("/images/skins/iconsets/default/category-femslash-omega-omega.png");
+}
 .required-tags .complete-no {
   background: url("/images/imageset.png") -100px -25px;
 }

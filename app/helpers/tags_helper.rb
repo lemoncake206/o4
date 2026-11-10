@@ -266,8 +266,19 @@ module TagsHelper
     warnings = tag_groups['ArchiveWarning']
     symbol_block << get_symbol_link(get_warnings_class(warnings), get_title_string(warnings))
 
-    categories = tag_groups['Category']
-    symbol_block << get_symbol_link(get_category_class(categories), get_title_string(categories, "category"))
+    categories = tag_groups['Category'] || []
+    secondary_categories = tag_groups['SecondaryCategory'] || []
+    
+    category_title = get_title_string(categories, "category")
+    
+    if categories.one? && secondary_categories.one?
+      category_title = "#{categories.first.name} / #{secondary_categories.first.name}"
+    end
+    
+    symbol_block << get_symbol_link(
+      get_category_class(categories, secondary_categories),
+      category_title
+    )
 
     if [Work, Series].include?(item.class)
       if item.complete?
@@ -333,7 +344,45 @@ module TagsHelper
     end
   end
 
-  def get_category_class(category_tags)
+  def get_category_class(category_tags, secondary_category_tags = [])
+    category_tags ||= []
+    secondary_category_tags ||= []
+    
+    # Show the multi-category symbol if either group has multiple selections.
+    return "category-multi category" if category_tags.length > 1 || secondary_category_tags.length > 1
+  
+    # Use a combination-specific logo when exactly one of each is selected.
+    if category_tags.one? && secondary_category_tags.one?
+      category_slug = case category_tags.first.name
+                      when ArchiveConfig.CATEGORY_SLASH_TAG_NAME
+                        "slash"
+                      when ArchiveConfig.CATEGORY_HET_TAG_NAME
+                        "het"
+                      when ArchiveConfig.CATEGORY_FEMSLASH_TAG_NAME
+                        "femslash"
+                      end
+  
+      secondary_slug = case secondary_category_tags.first.name
+                       when "Alpha/Alpha"
+                         "alpha-alpha"
+                       when "Alpha/Beta"
+                         "alpha-beta"
+                       when "Alpha/Omega"
+                         "alpha-omega"
+                       when "Beta/Beta"
+                         "beta-beta"
+                       when "Beta/Omega"
+                         "beta-omega"
+                       when "Omega/Omega"
+                         "omega-omega"
+                       end
+  
+      if category_slug && secondary_slug
+        return "category-#{category_slug}-#{secondary_slug} category"
+      end
+    end
+  
+    # Otherwise, preserve the original AO3 category-symbol behaviour.
     if category_tags.blank?
       "category-none category"
     elsif category_tags.length > 1
