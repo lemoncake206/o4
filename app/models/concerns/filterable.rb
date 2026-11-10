@@ -69,10 +69,20 @@ module Filterable
     define_method("#{visibility}_tags") do
       (tags.pluck(:name) + filters.pluck(:name)).uniq
     end
-
+    
     # Index all the filters for pulling works
     define_method("#{visibility}_filter_ids") do
-      (tags.pluck(:id) + filters.pluck(:id)).uniq
+      all_tags = tags.to_a + filters.to_a
+    
+      designation_character_ids = all_tags
+        .select do |tag|
+          %w[AlphaCharacter BetaCharacter OmegaCharacter].include?(tag.type.to_s)
+        end
+        .flat_map do |tag|
+          tag.parents.by_type("Character").pluck(:id)
+        end
+    
+      (all_tags.map(&:id) + designation_character_ids).uniq
     end
 
     # Index only direct filters (non meta-tags) for facets
@@ -84,9 +94,27 @@ module Filterable
 
     Tag::FILTERS.each do |tag_type|
       define_method("#{visibility}_#{tag_type.underscore}_ids") do
-        send("#{visibility}_filters_for_facets")
-          .select { |tag| tag.type.to_s == tag_type }
-          .map(&:id)
+        facet_tags = send("#{visibility}_filters_for_facets")
+    
+        if tag_type == "Character"
+          character_ids = facet_tags
+            .select { |tag| tag.type.to_s == "Character" }
+            .map(&:id)
+    
+          designation_character_ids = facet_tags
+            .select do |tag|
+              %w[AlphaCharacter BetaCharacter OmegaCharacter].include?(tag.type.to_s)
+            end
+            .flat_map do |tag|
+              tag.parents.by_type("Character").pluck(:id)
+            end
+    
+          (character_ids + designation_character_ids).uniq
+        else
+          facet_tags
+            .select { |tag| tag.type.to_s == tag_type }
+            .map(&:id)
+        end
       end
     end
   end
