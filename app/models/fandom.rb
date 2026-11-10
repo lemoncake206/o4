@@ -45,6 +45,6 @@ class Fandom < Tag
     ['Media', 'MetaTag']
   end
   def child_types
-    ['Character', 'Relationship', 'Freeform', 'SubTag', 'Merger']
+    ['Character', 'AlphaCharacter', 'BetaCharacter', 'OmegaCharacter', 'Relationship', 'Freeform', 'SubTag', 'Merger']
   end
 end

@@ -3282,9 +3282,12 @@ en:
       search_tags: Search Tags
       tag_type:
         character: Characters
+        alphacharacter: Alpha Characters
+        betacharacter: Beta Characters
         fandom: Fandoms
         freeform: Freeforms
         merger: Mergers
+        omegacharacter: Omega Characters
         relationship: Relationships
         subtag: SubTags
       tag_type_and_count: "%{tag_type} (%{count})"

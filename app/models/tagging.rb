@@ -3,6 +3,7 @@ class Tagging < ApplicationRecord
   belongs_to :taggable, polymorphic: true, touch: true, inverse_of: :taggings
 
   validates_presence_of :tagger, :taggable
+  validate :prevent_duplicate_character_versions
 
   # When we create or destroy a tagging, it may change the taggings count.
   after_create :update_taggings_count
@@ -41,5 +42,35 @@ class Tagging < ApplicationRecord
     # and if it's necessary to disambiguate existing canonical/unfilterable tags
     # in multiple fandoms.
     tagger.enqueue_to_index if tagger.taggings_count < ArchiveConfig.TAGGINGS_COUNT_REINDEX_LIMIT
+  end
+  
+  def prevent_duplicate_character_versions
+    return unless taggable.is_a?(Work)
+    return unless tagger.is_a?(Character)
+  
+    character_id = character_identity_id(tagger)
+    return unless character_id
+  
+    duplicate = taggable.taggings.to_a.any? do |other|
+      next if other.equal?(self)
+      next if id.present? && other.id == id
+  
+      other_tagger = other.tagger
+      next unless other_tagger.is_a?(Character)
+  
+      character_identity_id(other_tagger) == character_id
+    end
+  
+    if duplicate
+      errors.add(:base, "| A work can only have one version of each character tag. Ex. if you have tagged the fic as 'Omega Jensen Ackles', you can not also tag the fic as 'Alpha Jensen Ackles'; you must choose one.")
+    end
+  end
+  
+  def character_identity_id(character)
+    if character.type == "Character"
+      character.id
+    else
+      character.parents.by_type("Character").pick(:id)
+    end
   end
 end

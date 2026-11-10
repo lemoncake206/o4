@@ -100,7 +100,7 @@ module Taggable
 
   # Take the list of tags after saving, and filter by type:
   def tags_after_saving_of_type(klass)
-    tags_after_saving.select { |tag| tag.is_a?(klass) }
+    tags_after_saving.select { |tag| tag.type == klass.name }
   end
 
   # Split the tag string at each comma, and remove excess whitespace:

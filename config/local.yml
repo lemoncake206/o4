@@ -2,7 +2,7 @@ ES_URL: 'http://es:9200'
 MEMCACHED_SERVERS: mc:11211
 
 APP_URL: 'http://www.omegasofourown.org'
-APP_NAME: 'Omegas of Our Own'
+APP_NAME: 'All of Our Omegas'
 APP_HOST: 'archiveofourown.org'
 APP_SHORT_NAME: 'O4'
 LOGO: 'o4_logo.png'

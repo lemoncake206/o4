@@ -266,7 +266,7 @@ class TagsController < ApplicationController
     end
 
     show = params[:show]
-    if %w(fandoms characters relationships freeforms sub_tags mergers).include?(show)
+    if %w(fandoms characters alpha_characters beta_characters omega_characters relationships freeforms sub_tags mergers).include?(show)
       params[:sort_column] = 'name' unless valid_sort_column(params[:sort_column], 'tag')
       params[:sort_direction] = 'ASC' unless valid_sort_direction(params[:sort_direction])
       sort = params[:sort_column] + ' ' + params[:sort_direction]
