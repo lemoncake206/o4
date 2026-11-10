@@ -2176,10 +2176,10 @@ en:
       welcome_statement: You are welcome at the Archive of Our Own (AO3).
       your_feedback: your feedback
     donate:
-      intro: There are two main ways to support the Archive of Our Own (AO3) – donating your time or money.
+      intro: There is no way to donate or volunteer with AO4. 
       money:
         budget_reports: budget reports
-        details_html: AO3 is free to use and will never include ads of any type. All of our operating costs are supported by %{donation_link}, and we can't run AO3 without your help. We hold donation drives twice a year in April and October, but you can donate year-round. To learn more, check out our %{budget_reports_link} or refer to our %{faq_link}.
+        details_html: N/A
         donation: donations
         faq: Donation and Finance FAQs
         title: Donating Financially
@@ -2189,15 +2189,15 @@ en:
         contributing:
           contributing: Contributing Guidelines
           github: open-source archiving software
-          info_html: AO3 is run on %{github_link} developed by OTW volunteers and community contributors. Anyone can contribute to one of the open tasks in our %{jira_link}. To get started, refer to our %{contributing_link}.
+          info_html: N/A
           jira: Jira project
           title: Contributing Code
         title: Donating Your Time
         volunteering:
           committees: committees
-          info_html: 'The %{otw_link} (OTW) is the parent organization of AO3. The OTW normally recruits about once a month for volunteers to support %{projects_link}. Many of the OTW''s %{committees_link} contribute to AO3 in some capacity. However, if you are interested in volunteering primarily for AO3, the committees to look for are: Accessibility, Design, &amp; Technology; AO3 Documentation; Policy &amp; Abuse; Support; Tag Wrangling; Translation; and User Response Translation.'
+          info_html: N/A
           listings: open volunteer position listings
-          listings_html: We encourage you to browse through our %{listings_link} and apply for any volunteer roles that match your qualifications and interests. If there are no roles currently recruiting, you can sign up for %{news_link} or follow us on %{social_link}.
+          listings_html: N/A
           news: OTW News by Email
           organization_for_transformative_works: Organization for Transformative Works
           projects: its projects
@@ -2219,13 +2219,13 @@ en:
       social:
         bluesky: "@status.archiveofourown.org on Bluesky"
         heading: Follow us
-        note_html: Follow AO3 on Bluesky or Tumblr for status updates, and don't forget to check out the %{other_outlets_link} for updates on our other projects!
+        note_html: I haven't made any socials for AO4 yet :(
         other_outlets: Organization for Transformative Works' news outlets
         tumblr: ao3org on Tumblr
     intro_module:
-      intro_description: A non-profit, non-commercial archive for transformative fanworks; created by and for fans of books, music, art, games, shows, movies, real-person fiction (RPF), and other fandoms.
-      parent_org: Organization for Transformative Works
-      parent_org_intro_html: The Archive of Our Own (AO3) is a project of the %{parent_org_link}.
+      intro_description: A non-profit, non-commercial archive for transformative fanworks that fall into the popular omegaverse genre/trope; created by theotherwolfinsideyou.
+      parent_org: N/A
+      parent_org_intro_html: NOT!!! affiliated with Ao3/the OTW, but this website did utilize their open source code!.
     news_module:
       news:
         comments_html: 'Comments: %{comments}'
